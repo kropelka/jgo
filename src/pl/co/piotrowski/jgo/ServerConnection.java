@@ -3,6 +3,7 @@ package pl.co.piotrowski.jgo;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import pl.co.piotrowski.jgo.GameManager;
 
 public class ServerConnection {
 	ServerSocket serverSocket;
@@ -12,6 +13,13 @@ public class ServerConnection {
 		} catch (IOException e) {
 			System.err.println("Błąd inicjalizacji serwera: " + e.getMessage());
 		};
+	}
+	
+	void manageIncomingPlayers() {
+		Socket socket = listenForSocket();
+		if(socket != null) { 
+			(new Thread(new GameManager(socket))).start();
+		}
 	}
 	
 	Socket listenForSocket() {

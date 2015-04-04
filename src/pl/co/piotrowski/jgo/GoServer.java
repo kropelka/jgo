@@ -40,11 +40,7 @@ public class GoServer {
 		// przygotowano na podstawie tutoriala "All About Sockets"
 		// z dokumentacji Oracle Java SE
 		while(true) { 
-			clientSocket = conn.listenForSocket();
-			if(verbose) {
-				System.out.println("Otwarto połączenie z IP: " + clientSocket.getInetAddress() + 
-						"[" + clientSocket.getInetAddress().getHostName() + "]");
-			};
+			conn.manageIncomingPlayers();
 		}
 	}
 
